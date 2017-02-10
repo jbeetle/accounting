@@ -4,7 +4,6 @@ import com.beetle.component.accounting.dto.Account;
 import com.beetle.component.accounting.dto.Subject;
 import com.beetle.component.accounting.dto.TallyRequest;
 import com.beetle.component.accounting.dto.TallyResponse;
-import com.beetle.component.accounting.dto.enums.AccountType;
 import com.beetle.component.accounting.dto.enums.DirectFlag;
 import com.beetle.component.accounting.dto.enums.PasswordCheck;
 import com.beetle.component.accounting.dto.enums.SubjectType;
@@ -14,18 +13,21 @@ import com.beetle.component.accounting.service.SubjectService;
 import com.beetle.framework.resource.dic.DIContainer;
 
 public class Client {
-	public static void main(String[] args) {
-		mainCongZhi(args);
+	public static void main(String[] args) throws Throwable {
+		congZhi();
+		//openPlatformAccount();
+		//openPersonAccount1();
+		// openPersonAccount2();
 	}
 
-	public static void mainCongZhi(String[] args) {
+	public static void congZhi() {
 		AccountService as = DIContainer.getInstance().retrieve(AccountService.class);
 		TallyRequest req = new TallyRequest();
-		req.setAmount(5000l);
-		req.setOrderNo("ORDER8000000345");
+		req.setAmount(20000l);
+		req.setOrderNo("ORDER000000000001");//业务系统的订单号
 		req.setDrPasswordCheck(false);
-		req.setDrAccountNo("0C6F1C26BF6343F9A9A26C9CA860C89D");
-		req.setCrAccountNo("8B4FB8803BF34AFE852192970ED8E6C3");
+		req.setDrAccountNo("1001011421486701113573");
+		req.setCrAccountNo("2241009981486700756248");
 		TallyResponse res;
 		try {
 			res = as.tally(req);
@@ -58,16 +60,41 @@ public class Client {
 
 	}
 
-	public static void main3(String[] args) throws AccountingServiceException {
+	// 开一个平台公共存款账户
+	public static void openPlatformAccount() throws AccountingServiceException {
 		AccountService as = DIContainer.getInstance().retrieve(AccountService.class);
 		Account account = new Account();
-		account.setAccountName("平台清算银行存款账户");
-		account.setAccountType(AccountType.SUB_ACC.toInteger());
-		account.setMemberNo("90000000000000009");
+		account.setAccountName("平台资金");
+		account.setMemberNo("99999999999999");
 		account.setPassword("");
 		account.setPasswordCheck(PasswordCheck.NOT_NEED.toInteger());
-		account.setSubjectNo("1002");
+		account.setSubjectNo("100101");
 		account.setSubjectDirect(DirectFlag.DR.toString());
+		as.openAccount(account);
+	}
+
+	// 开一个普通个人资金账户
+	public static void openPersonAccount1() throws AccountingServiceException {
+		AccountService as = DIContainer.getInstance().retrieve(AccountService.class);
+		Account account = new Account();
+		account.setAccountName("个人会员投资账户");
+		account.setMemberNo("100000000001");
+		account.setPassword("888888");
+		account.setPasswordCheck(PasswordCheck.NEED.toInteger());
+		account.setSubjectNo("2241");
+		account.setSubjectDirect(DirectFlag.CR.toString());
+		as.openAccount(account);
+	}
+
+	public static void openPersonAccount2() throws AccountingServiceException {
+		AccountService as = DIContainer.getInstance().retrieve(AccountService.class);
+		Account account = new Account();
+		account.setAccountName("个人会员投资账户");
+		account.setMemberNo("100000000002");
+		account.setPassword("999999");
+		account.setPasswordCheck(PasswordCheck.NEED.toInteger());
+		account.setSubjectNo("201202");
+		account.setSubjectDirect(DirectFlag.CR.toString());
 		as.openAccount(account);
 	}
 
@@ -85,14 +112,14 @@ public class Client {
 		}
 	}
 
-	public static void main1(String[] args) {
+	public static void main1111(String[] args) {
 		SubjectService ss = DIContainer.getInstance().retrieve(SubjectService.class);
 		Subject subject = new Subject();
-		subject.setSubjectType(SubjectType.LIABILITY.toInteger());
-		subject.setSubjectDirect(DirectFlag.CR.toString());
-		subject.setSubjectName("个人会员资金");
-		subject.setSubjectNo("201202");
-		subject.setRemark("会员账号-个人会员资金-人民币");
+		subject.setSubjectType(SubjectType.ASSETS.toInteger());
+		subject.setSubjectDirect(DirectFlag.DR.toString());
+		subject.setSubjectName("平台资金");
+		subject.setSubjectNo("100101");
+		subject.setRemark("平台资金-客户");
 		try {
 			ss.createSubject(subject);
 		} catch (AccountingServiceException e) {

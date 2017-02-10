@@ -1,7 +1,6 @@
 package com.beetle.component.accounting.service.imp;
 
 import java.sql.Timestamp;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 
@@ -94,7 +93,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account openAccount(Account account) throws AccountingServiceException {
-		String accountNo = UUID.randomUUID().toString().replace("-", "").toUpperCase();
+		//String accountNo = UUID.randomUUID().toString().replace("-", "").toUpperCase();
+		String accountNo=Util.generaterAccountNo(account.getSubjectNo());
 		account.setAccountNo(accountNo);
 		account.setCreateTime(null);// use db time
 		account.setUpdateTime(null);// use db time

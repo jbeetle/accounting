@@ -5,7 +5,6 @@ public class Account implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private String subjectno;
 	private String accountname;
-	private Integer accounttype;
 	private java.sql.Timestamp updatetime;
 	private Integer accountstatus;
 	private Long accountid;
@@ -26,10 +25,6 @@ public class Account implements java.io.Serializable {
 
 	public String getAccountName() {
 		return this.accountname;
-	}
-
-	public Integer getAccountType() {
-		return this.accounttype;
 	}
 
 	public java.sql.Timestamp getUpdateTime() {
@@ -80,10 +75,6 @@ public class Account implements java.io.Serializable {
 		this.accountname = accountname;
 	}
 
-	public void setAccountType(Integer accounttype) {
-		this.accounttype = accounttype;
-	}
-
 	public void setUpdateTime(java.sql.Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
@@ -126,11 +117,10 @@ public class Account implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Account [subjectno=" + subjectno + ", accountname=" + accountname + ", accounttype=" + accounttype
-				+ ", updatetime=" + updatetime + ", accountstatus=" + accountstatus + ", accountid=" + accountid
-				+ ", memberno=" + memberno + ", password=" + password + ", balance=" + balance + ", createtime="
-				+ createtime + ", accountno=" + accountno + ", passwordcheck=" + passwordcheck + ", subjectdirect="
-				+ subjectdirect + "]";
+		return "Account [subjectno=" + subjectno + ", accountname=" + accountname + ", updatetime=" + updatetime
+				+ ", accountstatus=" + accountstatus + ", accountid=" + accountid + ", memberno=" + memberno
+				+ ", password=" + password + ", balance=" + balance + ", createtime=" + createtime + ", accountno="
+				+ accountno + ", passwordcheck=" + passwordcheck + ", subjectdirect=" + subjectdirect + "]";
 	}
 
 	@Override
@@ -138,18 +128,7 @@ public class Account implements java.io.Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((accountid == null) ? 0 : accountid.hashCode());
-		result = prime * result + ((accountname == null) ? 0 : accountname.hashCode());
 		result = prime * result + ((accountno == null) ? 0 : accountno.hashCode());
-		result = prime * result + ((accountstatus == null) ? 0 : accountstatus.hashCode());
-		result = prime * result + ((accounttype == null) ? 0 : accounttype.hashCode());
-		result = prime * result + ((balance == null) ? 0 : balance.hashCode());
-		result = prime * result + ((createtime == null) ? 0 : createtime.hashCode());
-		result = prime * result + ((memberno == null) ? 0 : memberno.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((passwordcheck == null) ? 0 : passwordcheck.hashCode());
-		result = prime * result + ((subjectdirect == null) ? 0 : subjectdirect.hashCode());
-		result = prime * result + ((subjectno == null) ? 0 : subjectno.hashCode());
-		result = prime * result + ((updatetime == null) ? 0 : updatetime.hashCode());
 		return result;
 	}
 
@@ -167,65 +146,10 @@ public class Account implements java.io.Serializable {
 				return false;
 		} else if (!accountid.equals(other.accountid))
 			return false;
-		if (accountname == null) {
-			if (other.accountname != null)
-				return false;
-		} else if (!accountname.equals(other.accountname))
-			return false;
 		if (accountno == null) {
 			if (other.accountno != null)
 				return false;
 		} else if (!accountno.equals(other.accountno))
-			return false;
-		if (accountstatus == null) {
-			if (other.accountstatus != null)
-				return false;
-		} else if (!accountstatus.equals(other.accountstatus))
-			return false;
-		if (accounttype == null) {
-			if (other.accounttype != null)
-				return false;
-		} else if (!accounttype.equals(other.accounttype))
-			return false;
-		if (balance == null) {
-			if (other.balance != null)
-				return false;
-		} else if (!balance.equals(other.balance))
-			return false;
-		if (createtime == null) {
-			if (other.createtime != null)
-				return false;
-		} else if (!createtime.equals(other.createtime))
-			return false;
-		if (memberno == null) {
-			if (other.memberno != null)
-				return false;
-		} else if (!memberno.equals(other.memberno))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (passwordcheck == null) {
-			if (other.passwordcheck != null)
-				return false;
-		} else if (!passwordcheck.equals(other.passwordcheck))
-			return false;
-		if (subjectdirect == null) {
-			if (other.subjectdirect != null)
-				return false;
-		} else if (!subjectdirect.equals(other.subjectdirect))
-			return false;
-		if (subjectno == null) {
-			if (other.subjectno != null)
-				return false;
-		} else if (!subjectno.equals(other.subjectno))
-			return false;
-		if (updatetime == null) {
-			if (other.updatetime != null)
-				return false;
-		} else if (!updatetime.equals(other.updatetime))
 			return false;
 		return true;
 	}
