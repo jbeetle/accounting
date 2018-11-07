@@ -5,10 +5,10 @@ import com.beetle.component.accounting.persistence.SubjectDao;
 import com.beetle.component.accounting.service.AccountingServiceException;
 import com.beetle.component.accounting.service.SubjectService;
 import com.beetle.framework.persistence.access.operator.DBOperatorException;
-import com.beetle.framework.resource.dic.def.InjectField;
+import com.beetle.framework.resource.dic.def.DaoField;
 
 public class SubjectServiceImpl implements SubjectService {
-	@InjectField
+	@DaoField
 	private SubjectDao subDao;
 
 	@Override

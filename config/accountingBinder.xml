@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<binder>
+  <!-- dao -->
+  <item interface="com.beetle.component.accounting.persistence.AccountDao" implement="com.beetle.component.accounting.persistence.imp.AccountImpl" />
+  <item interface="com.beetle.component.accounting.persistence.SubjectDao" implement="com.beetle.component.accounting.persistence.imp.SubjectImpl" />
+  <item interface="com.beetle.component.accounting.persistence.WaterDao" implement="com.beetle.component.accounting.persistence.imp.WaterImpl" />
+  <!-- service -->
+  <item interface="com.beetle.component.accounting.service.SubjectService" implement="com.beetle.component.accounting.service.imp.SubjectServiceImpl" />
+  <item interface="com.beetle.component.accounting.service.AccountService" implement="com.beetle.component.accounting.service.imp.AccountServiceImpl" />
+</binder>

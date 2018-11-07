@@ -17,15 +17,15 @@ import com.beetle.component.accounting.service.AccountService;
 import com.beetle.component.accounting.service.AccountingServiceException;
 import com.beetle.framework.log.AppLogger;
 import com.beetle.framework.persistence.access.operator.DBOperatorException;
-import com.beetle.framework.resource.dic.def.InjectField;
+import com.beetle.framework.resource.dic.def.DaoField;
 import com.beetle.framework.resource.dic.def.ServiceTransaction;
 import com.beetle.framework.resource.dic.def.ServiceTransaction.Manner;
 
 public class AccountServiceImpl implements AccountService {
 	private Logger logger = AppLogger.getLogger(AccountServiceImpl.class);
-	@InjectField
+	@DaoField
 	private AccountDao accDao;
-	@InjectField
+	@DaoField
 	private WaterDao waterDao;
 
 	private static class VR {
@@ -93,8 +93,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account openAccount(Account account) throws AccountingServiceException {
-		//String accountNo = UUID.randomUUID().toString().replace("-", "").toUpperCase();
-		String accountNo=Util.generaterAccountNo(account.getSubjectNo());
+		// String accountNo = UUID.randomUUID().toString().replace("-",
+		// "").toUpperCase();
+		String accountNo = Util.generaterAccountNo(account.getSubjectNo());
 		account.setAccountNo(accountNo);
 		account.setCreateTime(null);// use db time
 		account.setUpdateTime(null);// use db time
